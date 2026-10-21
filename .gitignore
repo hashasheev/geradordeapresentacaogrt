@@ -1,0 +1,10 @@
+# Scripts auxiliares (não são parte do app)
+fix_html.py
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
