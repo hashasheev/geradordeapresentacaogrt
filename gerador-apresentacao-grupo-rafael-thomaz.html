@@ -34,7 +34,7 @@ p,h1,h2,h3{margin:0}
 .chips{display:flex;flex-wrap:wrap;gap:20px}.chip{border:1px solid #4A6688;border-radius:40px;padding:14px 32px;font-size:28px;font-weight:500}
 .lab{display:flex;flex-direction:column;gap:8px}.lab small{font-size:24px;color:#8FA0B8}.lab span{font-size:36px;font-weight:600}
 .stat p:first-child{font-size:64px;font-weight:700;line-height:1.1}.stat p:last-child{font-size:24px;line-height:1.3;color:#B8C4D6}
-@media print{@page{size:landscape;margin:0}@page{size:1920px 1080px;margin:0}*,*:before,*:after{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}html,body{margin:0 !important;padding:0 !important;background:none !important;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}html{--s:1 !important}.bar,.pn,#printModal{display:none !important}.deck{padding:0 !important;margin:0 !important;gap:0 !important;display:block !important;width:1920px !important}.frame{width:1920px !important;height:1080px !important;overflow:hidden !important;box-shadow:none !important;break-after:page !important;page-break-after:always !important;display:block !important;margin:0 !important;padding:0 !important}.frame:last-child{break-after:auto !important;page-break-after:auto !important}.slide{transform:none !important;width:1920px !important;height:1080px !important;margin:0 !important;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}}
+@media print{@page{size:landscape;margin:0}@page{size:1920px 1080px;margin:0}*,*:before,*:after{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}html,body{margin:0 !important;padding:0 !important;background:none !important;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}html{--s:1 !important}.bar,.pn{display:none !important}.deck{padding:0 !important;margin:0 !important;gap:0 !important;display:block !important;width:1920px !important}.frame{width:1920px !important;height:1080px !important;overflow:hidden !important;box-shadow:none !important;break-after:page !important;page-break-after:always !important;display:block !important;margin:0 !important;padding:0 !important}.frame:last-child{break-after:auto !important;page-break-after:auto !important}.slide{transform:none !important;width:1920px !important;height:1080px !important;margin:0 !important;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}}
 .pn{background:#F3F1ED;padding:10px 24px;font-size:14px}.pn summary{cursor:pointer;font-weight:600;color:#0A1B30}
 .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.pg label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:#4A5568;font-weight:500}.pg .w{grid-column:span 3}
 .pg input,.pg textarea{font:13px 'Poppins',sans-serif;padding:7px 9px;border-radius:8px;border:1px solid #C9C3B8;background:#fff;color:#0A1B30;width:100%}.pg textarea{height:52px;resize:vertical}
@@ -47,7 +47,7 @@ p,h1,h2,h3{margin:0}
 <label>Nome(s) na capa<input type="text" id="cap"></label>
 <label>Nome na frase final<input type="text" id="fin"></label>
 <label class="ck"><input type="checkbox" id="a5" checked>CNPJs com mais de 5 anos</label>
-<button onclick="imprimirPDF()">Salvar como PDF</button><button class="g" onclick="nl()">Novo lead</button>
+<button onclick="window.print()">Salvar como PDF</button><span class="tip-pdf" style="font-size:12px;color:#9BB5DC;margin-left:6px;align-self:center">💡 <b>Dica PDF:</b> Destino <i>Salvar como PDF</i> · Layout <i>Paisagem</i> · Margens <i>Nenhuma</i></span><button class="g" onclick="nl()">Novo lead</button>
 </div>
 <details class="pn"><summary>Personalizar textos do setor (opcional)</summary>
 <div class="pg" id="pg"></div>
@@ -130,63 +130,5 @@ opts('b:oficina');setP(B.oficina);$('emp').value='Troca de Óleo Barcheta\nDanie
 $('seg').addEventListener('change',ld);
 ['emp','cap','fin','a5'].forEach(i=>$(i).addEventListener('input',render));
 $('pg').addEventListener('input',render);window.addEventListener('resize',fit);render();
-</script>
-<div id="printModal" onclick="if(event.target===this)fecharModalPrint()">
-  <div class="mc">
-    <h3>
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E8508C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-      Como salvar sem bordas brancas
-    </h3>
-    <div class="sl">
-      <div class="si">
-        <span class="sn">1</span>
-        <div><b>Destino / Impressora:</b> selecione <span class="badge">Salvar como PDF</span> (evite <i>Microsoft Print to PDF</i>).</div>
-      </div>
-      <div class="si">
-        <span class="sn">2</span>
-        <div><b>Layout:</b> selecione <span class="badge">Paisagem</span> (Landscape).</div>
-      </div>
-      <div class="si">
-        <span class="sn">3</span>
-        <div><b>Mais definições / More settings:</b>
-          <div style="margin-top:6px">• <b>Margens:</b> escolha <span class="badge-blue">Nenhuma</span></div>
-          <div style="margin-top:4px">• <b>Cabeçalhos e rodapés:</b> <span style="color:#C53030;font-weight:700">Desmarque</span> (remove data/título no topo)</div>
-          <div style="margin-top:4px">• <b>Gráficos de segundo plano:</b> <span style="color:#2B6CB0;font-weight:700">Marque</span> (mantém as cores dos slides)</div>
-        </div>
-      </div>
-    </div>
-    <label class="ds">
-      <input type="checkbox" id="chkDontShowPrint"> Não mostrar estas instruções novamente
-    </label>
-    <div class="act">
-      <button class="bc" onclick="fecharModalPrint()">Cancelar</button>
-      <button class="bp" onclick="confirmarImprimir()">Abrir Impressão</button>
-    </div>
-  </div>
-</div>
-<script>
-function imprimirPDF(){
-  try{
-    if(localStorage.getItem('grt_hide_print_tips')==='1'){
-      window.print();
-      return;
-    }
-  }catch(e){}
-  const m=document.getElementById('printModal');
-  if(m)m.style.display='flex';
-  else window.print();
-}
-function confirmarImprimir(){
-  const chk=document.getElementById('chkDontShowPrint');
-  if(chk&&chk.checked){
-    try{localStorage.setItem('grt_hide_print_tips','1')}catch(e){}
-  }
-  fecharModalPrint();
-  setTimeout(()=>window.print(),250);
-}
-function fecharModalPrint(){
-  const m=document.getElementById('printModal');
-  if(m)m.style.display='none';
-}
 </script>
 </body></html>
